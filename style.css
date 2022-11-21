@@ -1,13 +1,22 @@
-
-
-
+.navbar-brand {
+    text-align: center;
+}
 .card {
-    
+    padding: .5rem;
+    margin: .5rem;
+    border-radius: 25px;
+    min-width: 25%;
+}
+.city-button {
+    padding: .5rem;
+    margin: .5rem;
+    min-width: 25%;
 }
 
-.list-group {
-    padding: 1rem;
-    margin: 1.5rem;
-    border-radius: 25px;
-    min-width: 50%;
+#city-detail {
+    min-height: 50vh;
+}
+
+#city-forecast {
+    min-height: 18vh;
 }

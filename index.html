@@ -14,8 +14,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark h-20 grid grid-cols-2 gap-2">
+      <div>
         <a class="navbar-brand" href="#">Weather Dashboard</a>
       </div>
     </nav>
@@ -26,21 +26,35 @@
         <input type="text" name="textie" />
         <button class="btn btn-primary" type="button">Search</button>
       </div>
+    </div>
       <!-- insert local storage here -->
-    </div class="grid grid-cols-3 mt-4 gap-2 px-4">
-      <ul class="list-group flex flex-col col-span-3 lg:col-span-1 justify-center">
-        <li class="list-group-item flex justify-center">A city</li>
-        <li class="list-group-item flex justify-center">A second city</li>
-        <li class="list-group-item flex justify-center">A third city</li>
-        <li class="list-group-item flex justify-center">A fourth city</li>
-        <li class="list-group-item flex justify-center">And a fifth city</li>
-      </ul>
-    <div>
+    <div class="grid grid-cols-3 mt-4 gap-2 px-4">
+      <div class="flex flex-col col-span-3 lg:col-span-1 justify-center">
+        <div class="flex justify-center">
+          <button class="city-button">City One</button>
+        </div>
+        <div class="flex justify-center">
+          <button class="city-button">City Two</button>
+        </div>
+        <div class="flex justify-center">
+          <button class="city-button">City Three</button>
+        </div>
+        <div class="flex justify-center">
+          <button class="city-button">City Four</button>
+        </div>
+        <div class="flex justify-center">
+          <button class="city-button">City Five</button>
+        </div>
+      </div>
       <!-- Insert selected city here -->
+      <div class="col-span-3 lg:col-span-2">
+        <div id="city-detail" class="color-info border-rd">Selected City Details</div>
+        <div id="ciy-forecast" class="mt-2 color-info border-rd">Week Forecast</div>
+      </div>
     </div>
-    <div>
+    
       <!-- Divs for 5-day forecast -->
-    </div>
+    
     <!-- link javascript before closing body -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
