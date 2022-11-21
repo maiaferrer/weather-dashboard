@@ -2,8 +2,9 @@
 // create an array for recent searches
 
 // create vars for apikey, apiurl
+var WeatherAPIkey = '79d946f64f75e61339731b7d14963b20';
 
-// create cars for html elements
+// create vars for html elements
 
 
 
