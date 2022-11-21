@@ -2,9 +2,51 @@
 // create an array for recent searches
 
 // create vars for apikey, apiurl
-var WeatherAPIkey = '79d946f64f75e61339731b7d14963b20';
+var APIkey = '79d946f64f75e61339731b7d14963b20';
 
-// create vars for html elements
+$("#city-search").on("click", function(e){
+    e.preventDefault();
+    var city = $("#city-input").val();
+    $("#city-input").val("");
+    console.log(city);
+
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIkey}`)
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data){
+        currentWeatherInfo(data[0].lat, data[0].lon);
+    });
+})
+
+function currentWeatherInfo(lat, lon)
+{
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${APIkey}`)
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data){
+        console.log(JSON.stringify(data));
+
+        var h2 = $("<h2>");
+        // h2.text(data.name+"("+dayaJs().format("F")+")");
+
+        var icon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+        var img = $("<img>");
+        img.attr("src", icon);
+
+        var temp  = $("<p>");
+        temp.text("Temp: "+data.main.temp+" F");
+
+        var humidity  = $("<p>");
+        humidity.text("Humidity: "+data.main.humidity +" %");
+
+        var windSpeed  = $("<p>");
+        windSpeed.text("Wind Speed: "+data.wind.speed+" MPH");
+
+        $("#city-detail").append(h2, img, temp, humidity, windSpeed);
+    });
+}
 
 
 
