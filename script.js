@@ -1,5 +1,6 @@
 // TOP OF PAGE
 // create an array for recent searches
+var searchedCities = document.querySelector('.list-group')
 
 // create vars for apikey, apiurl
 var APIkey = '79d946f64f75e61339731b7d14963b20';
@@ -16,6 +17,8 @@ $("#city-search").on("click", function(e){
     })
     .then(function(data){
         currentWeatherInfo(data[0].lat, data[0].lon);
+        saveLocaly(city);
+        saveToBtnList(city)
     });
 })
 
@@ -48,24 +51,60 @@ function currentWeatherInfo(lat, lon)
     });
 }
 
-
-
-// BODY OF PAGE
 // create function to get items from local storage, then put into recent searches array, then render
-// call dayjs
+// function getRecentCities() {
+//  var userCityInput = localStorage.getItem('#city-search').value;
 
-// function to get data from search bar { get value from search bar, to be used in fetch request }
+//  searchedCities.textContent = userCityInput;
+// }
 
-// function to fetch main weather data 
-// transform data
-// get icon value from api --> if statement to find out type of weather -->
-// assign data to var or create and append to page 
+// city.addEventListener('click', function(event){
+//     event.preventDefault();
+// var userCityInput = document.querySelector("#city-search").value;
+
+// localStorage.getItem(userCityInput);
+// getRecentCities();
+// })
+
+// localStorage.getItem('userCityInput', userCityInput);
+
+function saveLocaly(city){
+    var localCities = localStorage.getItem('cities');
+
+    if (localCities){
+    var newCities = JSON.parse(localCities);
+    newCities.push(city);
+    localStorage.setItem('cities', JSON.stringify(newCities))
+    } else {
+    var newCities = [city];
+    localStorage.setItem('cities', JSON.stringify(newCities))
+    }
+}
+
+function getCities(){
+    var localCities = localStorage.getItem('cities');
+
+    if (localCities){
+    var newCities = JSON.parse(localCities);
+    var citiesLength = newCities.length > 5?5:newCities.length
+    for (let index = citiesLength; index > 0; index--) {
+        const city = newCities[index];
+    var citybtn = document.createElement('button')
+    citybtn.textContent = city;
+    // TODO add classes for parent styling
+    citybtn.className = 'btn';
+    document.getElementById('city-buttons').appendChild(citybtn)
+    }
+    }
+}
+
+getCities()
+
+function saveToBtnList(city) {
+  var citybtn = document.createElement('button')
+    citybtn.textContent = city;
+    citybtn.className = 'btn';
+    document.getElementById('city-buttons').appendChild(citybtn)  
 
 
-
-// AT BOTTOM OF PAGE
-// run function to get recent searches 
-
-// create button to run function when user inputs destination
-// add event listener for recent searches
-
+}
